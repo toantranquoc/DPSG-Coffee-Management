@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8aca63f4-8efd-4278-aa22-a680b761244a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="tenmon" class="java.lang.String"/>
+	<field name="soluong" class="java.lang.String"/>
+	<field name="gia" class="java.lang.String"/>
+	<field name="thanhtien" class="java.lang.String"/>
+	<field name="maban" class="java.lang.String"/>
+	<field name="manv" class="java.lang.String"/>
+	<field name="tongtien" class="java.lang.String"/>
+	<field name="mahd" class="java.lang.String"/>
+	<field name="time" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="23" y="0" width="346" height="35" uuid="30a84d81-c492-4aac-ba69-bac5c0fd51d6"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DPSG COFFEE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="115" y="35" width="155" height="20" uuid="08dc62a2-d135-4099-8366-d9cb5bec0c08"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Enjoy Your Time Coffee]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="252" y="55" width="121" height="20" uuid="088a28d0-c5fd-4aa8-8b66-65f27c5e365e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Phone: 0935270629]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<staticText>
+				<reportElement x="18" y="10" width="34" height="20" uuid="125cd052-34fb-4545-83af-a9b054ccef33"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bàn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="18" y="41" width="77" height="20" uuid="9834f8cf-92cf-4231-a0b8-43341c5e52ac"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mã hóa đơn:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="10" width="73" height="20" uuid="863dc145-fd26-40e7-bd93-1598686653a5"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nhân viên:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="197" y="41" width="73" height="20" uuid="afb39e17-f12b-402a-91f1-ef8ea26ee5e8"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Giờ xuất:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="107" y="41" width="67" height="20" uuid="8f6077b0-0589-4cfd-ad66-c40d35eb3cc4"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{mahd}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="74" y="10" width="70" height="20" uuid="27b01f85-656b-4f0e-8e42-07f2f94f26e3"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{maban}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="10" width="88" height="20" uuid="42e8d656-3add-496b-ba7b-d9c65d7caa2c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{manv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="281" y="41" width="88" height="20" uuid="125377c4-3bec-4924-a239-c47052dccd7b"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{time}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="11" width="66" height="20" uuid="bbe40c25-7968-4e89-bba5-d5718ff745b9"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tên món]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="11" width="55" height="20" uuid="1b7bd149-c346-406f-bc8f-66ed27980c2f"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Số lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="11" width="54" height="20" uuid="8769bc6a-ec04-40ec-b2b3-cdb2712c1b3d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Giá]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="286" y="11" width="67" height="20" uuid="db8ef146-ea4f-45f4-99e3-c74ab8b7f45c"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Thành tiền]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="41" width="381" height="1" uuid="eac95310-cc6d-4987-8e39-751ca605c766"/>
+			</line>
+			<line>
+				<reportElement x="162" y="0" width="90" height="1" uuid="897a3eb3-a3ad-4992-9bcb-d32bc1845bcb"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="8" y="14" width="66" height="20" uuid="2a3e71c7-8b2c-4e27-be62-a01dd047f978"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tenmon}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="14" width="55" height="20" uuid="176a62b4-d546-4fb1-95ee-56e44c11762c"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{soluong}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="14" width="72" height="20" uuid="017d6e91-f382-42b3-9129-0bbd197e3da6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{gia}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="286" y="14" width="83" height="20" uuid="e150c02f-a455-48ef-a4fb-20609f8f0cc6"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{thanhtien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="16" width="130" height="20" uuid="c50f4496-9ce9-4374-a8b6-b397ee6c77e7"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tổng tiền thanh toán:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="9" width="381" height="1" uuid="b48be0f5-ca43-481a-b132-269e9facaa17"/>
+			</line>
+			<textField>
+				<reportElement x="208" y="16" width="162" height="20" uuid="1be5b2d8-d466-4d6c-aa25-a08b5b00ad07"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tongtien}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="42" y="0" width="282" height="20" uuid="c726e532-f2b8-4540-890d-b517d6eab8ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cảm ơn và hẹn gặp lại quý khách]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>
