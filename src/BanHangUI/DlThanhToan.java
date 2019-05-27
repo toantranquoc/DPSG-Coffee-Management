@@ -276,14 +276,6 @@ public class DlThanhToan extends javax.swing.JDialog {
             thanhtien = ds.GetGia() * ds.GetSoLuong();
             arrayHoadon.add(new invoice(ds.GetTenMon(), String.valueOf(ds.GetSoLuong()), String.valueOf(ds.GetGia()), String.valueOf(ds.GetSoLuong() * ds.GetGia()), String.valueOf(tenBan), String.valueOf(LoginForm.taikhoan.getUsername()), String.valueOf(MaHD), String.valueOf(tongtien), time));
         }
-        for (invoice object : arrayHoadon) {
-            System.out.println(object.getTenmon() + " " + object.getSoluong() + " " + object.getGia() + " " + object.getThanhtien());
-        }
-//        Map<String, Object> row = new HashMap<>();
-//        row.put("tongtien", String.valueOf(chuyentien.format(tongtien) + " VNĐ"));
-//        row.put("mahd", String.valueOf(MaHD));
-//        row.put("manv", LoginForm.taikhoan.getUsername());
-//        row.put("maban", tenBan);
         try {
             JRDataSource jRDataSource = new JRBeanCollectionDataSource(arrayHoadon);
             JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\pc\\Downloads\\Documents\\NetBeansProjects\\DPSGCoffee\\src\\Report\\InHoaDon.jrxml");

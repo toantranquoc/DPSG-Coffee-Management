@@ -5,20 +5,36 @@
  */
 package ThongKeUI;
 
+import BanHangUI.DlThanhToan;
 import Data.ConnectDB;
+import MainUI.LoginForm;
 import Models.Ban;
 import Models.DsOrder;
 import Models.HoaDon;
 import Models.Loai;
 import Models.ThucDon;
 import Models.account;
+import Models.invoice;
+import Models.thongke;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -31,7 +47,7 @@ public class JpThongKe extends javax.swing.JPanel {
      */
     ConnectDB cn = new ConnectDB();
     NumberFormat tien = new DecimalFormat("#,###,###");
-
+    public static ArrayList<thongke> arrayThongke; 
     public JpThongKe() {
         initComponents();
         fillTableHD();
@@ -79,6 +95,7 @@ public class JpThongKe extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         lbTongtaikhoan = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        btnInthongke = new javax.swing.JButton();
 
         jtableHoadon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -195,6 +212,13 @@ public class JpThongKe extends javax.swing.JPanel {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/notebook.png"))); // NOI18N
         jLabel10.setText("jLabel10");
 
+        btnInthongke.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/inhoadon.png"))); // NOI18N
+        btnInthongke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInthongkeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -202,6 +226,14 @@ public class JpThongKe extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(lbTongtienthu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(lbTOnghoadon, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(11, 11, 11)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,32 +248,25 @@ public class JpThongKe extends javax.swing.JPanel {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addComponent(jLabel5)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(lbTongtienmon, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbTongtienthu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(lbTOnghoadon, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel13)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbTongban, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbtongmon, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbTongloai, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lbTongtaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(lbTongtienmon, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel13)
+                    .addComponent(btnInthongke, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbTongban, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbtongmon, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbTongloai, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lbTongtaikhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,13 +316,14 @@ public class JpThongKe extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(lbTOnghoadon))
-                        .addGap(10, 10, 10)
+                            .addComponent(lbTOnghoadon)
+                            .addComponent(btnInthongke, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(lbTongtienmon))
@@ -312,6 +338,7 @@ public class JpThongKe extends javax.swing.JPanel {
                             .addComponent(jLabel6)
                             .addComponent(lbTongtienthu)))
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lbTongmonban)
                             .addComponent(jLabel12))
@@ -325,11 +352,14 @@ public class JpThongKe extends javax.swing.JPanel {
                             .addComponent(lbTongloai)
                             .addComponent(jLabel9)
                             .addComponent(lbTongtaikhoan)))
-                    .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     public void fillTableHD() {
+        arrayThongke = new ArrayList<>();
         ArrayList<HoaDon> arrayHoadon = cn.GetDSHD();
         DefaultTableModel tableHoadon = new DefaultTableModel();
         tableHoadon.addColumn("Mã hóa đơn");
@@ -368,6 +398,7 @@ public class JpThongKe extends javax.swing.JPanel {
                 }
                 tongGiam += giamGia;
                 tableHoadon.addRow(new Object[]{td.GetMaHD(), sf.format(td.GetGioDen()), tien.format(tienmon), tien.format(giamGia) + dv, tien.format(td.GetTongTien()), tenban, cacmon});
+                arrayThongke.add(new thongke(String.valueOf(td.GetMaHD()), tien.format(tienmon), tien.format(giamGia) + dv, tien.format(td.GetTongTien()), tenban, cacmon, tien.format(tongTienmon - tongGiam),String.valueOf(tongHd), tien.format(tongTienmon),tien.format(tongGiam)));
             }
             lbTOnghoadon.setText(tongHd + " hóa đơn");
             lbTongtienthu.setText(tien.format(tongTienmon - tongGiam) + " VND");
@@ -458,6 +489,7 @@ public class JpThongKe extends javax.swing.JPanel {
     }
 
     public void fillHDbyDate() {
+        arrayThongke = new ArrayList<>();
         Date d1 = jdateFrom.getDate();
         Date d2 = jdateTo.getDate();
 
@@ -504,8 +536,8 @@ public class JpThongKe extends javax.swing.JPanel {
                         }
                         tongGiam += giamGia;
                         tbmodel.addRow(new Object[]{td.GetMaHD(), sf.format(td.GetGioDen()), tien.format(tienmon), tien.format(giamGia) + dv, tien.format(td.GetTongTien()), tenban, cacmon});
-
-                    }
+                        arrayThongke.add(new thongke(String.valueOf(td.GetMaHD()), tien.format(tienmon), tien.format(giamGia) + dv, tien.format(td.GetTongTien()), tenban, cacmon, tien.format(tongTienmon - tongGiam),String.valueOf(tongHd), tien.format(tongTienmon),tien.format(tongGiam)));
+                                }
                 }
                 lbTOnghoadon.setText(tongHd + " hóa đơn");
                 lbTongtienthu.setText(tien.format(tongTienmon - tongGiam) + " VND");
@@ -574,8 +606,25 @@ public class JpThongKe extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnThongkeActionPerformed
 
+    private void btnInthongkeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInthongkeActionPerformed
+        // TODO add your handling code here:
+        for (thongke object : arrayThongke) {
+            System.out.println(object.getMahd()+  " " + object.getThanhtien());
+        }
+        try {
+            JRDataSource jRDataSource = new JRBeanCollectionDataSource(arrayThongke);
+            JasperReport jasperReport = JasperCompileManager.compileReport("C:\\Users\\pc\\Downloads\\Documents\\NetBeansProjects\\DPSGCoffee\\src\\Report\\InThongKe.jrxml");
+
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, jRDataSource);
+            JasperViewer.viewReport(jasperPrint, false);
+        } catch (JRException ex) {
+            Logger.getLogger(DlThanhToan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnInthongkeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnInthongke;
     private javax.swing.JButton btnThongke;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
