@@ -595,6 +595,19 @@ public class ConnectDB {
         }
 
     }
+    public boolean UpdateBanCon(String maban){
+        int update = 0;
+        String sql = "UPDATE ban SET TrangThai = N'Trống' WHERE TrangThai like '%"+maban+"%'";
+        try {
+            Statement st = cn.createStatement();
+            update = st.executeUpdate(sql);
+            return true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Update bàn không thành công !");
+            return false;
+        }
+      
+    }
 
     public boolean DeleteThucDon(ArrayList<String> listMamon) {
         boolean check = false;

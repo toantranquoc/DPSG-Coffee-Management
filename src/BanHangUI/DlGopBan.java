@@ -6,10 +6,10 @@
 package BanHangUI;
 
 import Data.ConnectDB;
+import Models.Ban;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
-import Models.Ban;
 
 /**
  *
@@ -21,17 +21,15 @@ public class DlGopBan extends javax.swing.JDialog {
      * Creates new form DlGopBan
      */
     int maBan, maHD;
-    String tenBan;
+    String TenBan;
     ConnectDB cn = new ConnectDB();
-
-    public DlGopBan(java.awt.Frame parent, boolean modal, int maban, String tenban, int mahd) {
+    public DlGopBan(java.awt.Frame parent, boolean modal, int maban, int mahd, String tenban) {
         super(parent, modal);
         initComponents();
         maBan = maban;
         maHD = mahd;
-        tenBan = tenban;
+        TenBan = tenban;
         fillCbb();
-        lbGopban.setText("Gộp bàn " + tenban);
     }
 
     /**
@@ -43,39 +41,14 @@ public class DlGopBan extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        JpGopBan = new javax.swing.JPanel();
-        lbGopban = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        cbBanDangPhucVu = new javax.swing.JComboBox<>();
-        btnOK = new javax.swing.JButton();
         btnHuy = new javax.swing.JButton();
+        btnOK = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        cbBanDangPv = new javax.swing.JComboBox<>();
+        lbChuyenban = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
-
-        JpGopBan.setBackground(new java.awt.Color(0, 153, 153));
-        JpGopBan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 102, 51)));
-
-        lbGopban.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        lbGopban.setForeground(new java.awt.Color(255, 255, 255));
-        lbGopban.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbGopban.setText("GỘP BÀN");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 153));
-        jLabel1.setText("Đến bàn");
-
-        cbBanDangPhucVu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        btnOK.setBackground(new java.awt.Color(0, 0, 255));
-        btnOK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnOK.setForeground(new java.awt.Color(255, 255, 255));
-        btnOK.setText("OK");
-        btnOK.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOKActionPerformed(evt);
-            }
-        });
 
         btnHuy.setBackground(new java.awt.Color(255, 51, 51));
         btnHuy.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -87,100 +60,108 @@ public class DlGopBan extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout JpGopBanLayout = new javax.swing.GroupLayout(JpGopBan);
-        JpGopBan.setLayout(JpGopBanLayout);
-        JpGopBanLayout.setHorizontalGroup(
-            JpGopBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lbGopban, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(JpGopBanLayout.createSequentialGroup()
-                .addGroup(JpGopBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(JpGopBanLayout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(cbBanDangPhucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(JpGopBanLayout.createSequentialGroup()
-                        .addGap(121, 121, 121)
-                        .addComponent(btnOK)
-                        .addGap(46, 46, 46)
-                        .addComponent(btnHuy)))
-                .addContainerGap(90, Short.MAX_VALUE))
-        );
-        JpGopBanLayout.setVerticalGroup(
-            JpGopBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(JpGopBanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lbGopban, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(JpGopBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbBanDangPhucVu, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addGroup(JpGopBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOK)
-                    .addComponent(btnHuy))
-                .addContainerGap(46, Short.MAX_VALUE))
-        );
+        btnOK.setBackground(new java.awt.Color(0, 0, 255));
+        btnOK.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnOK.setForeground(new java.awt.Color(255, 255, 255));
+        btnOK.setText("OK");
+        btnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOKActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel1.setText("Đến bàn");
+
+        cbBanDangPv.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        lbChuyenban.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbChuyenban.setForeground(new java.awt.Color(255, 0, 0));
+        lbChuyenban.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbChuyenban.setText("Gộp bàn");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JpGopBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lbChuyenban, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnOK)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnHuy))
+                    .addComponent(cbBanDangPv, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(JpGopBan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbChuyenban, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbBanDangPv, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnOK)
+                    .addComponent(btnHuy))
+                .addGap(45, 45, 45))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnHuyActionPerformed
+
     private void btnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOKActionPerformed
         // TODO add your handling code here:
-        Ban banChuyen = new Ban(maBan, tenBan, "Trống");
+        Ban banChuyen = new Ban(maBan, TenBan, "Gộp bàn mẹ");
         if (cn.UpdateBan(banChuyen)) {
-            Ban banChon = (Ban) cbBanDangPhucVu.getSelectedItem();
-//            Ban den = new Ban(banChon.GetMaBan(), banChon.GetTenBan(), "Đang phục vụ");
-            String maHd = String.valueOf(maHD);
-            String maban = String.valueOf(banChon.GetMaBan());
-//            if (cn.UpdateBan(den)) {
-                if (cn.UpdateHDBan(maHd, maban)){
-                    JOptionPane.showMessageDialog(null, "Chuyển bàn thành công!");
+            Ban banChon = (Ban) cbBanDangPv.getSelectedItem();
+            Ban den = new Ban(banChon.GetMaBan(), banChon.GetTenBan(), "Ghép bàn với " + maBan);
+            String maban = String.valueOf(den.GetMaBan());
+            if (cn.UpdateBan(den)) {
+                    JOptionPane.showMessageDialog(null, "Gộp bàn thành công!");
                     JpBanhang.banhang.fillBan();
                     JpBanhang.banhang.updateUI();
                     JpGoiMon.goimon.removeAll();
                     dispose();
                 }
-//            }
+       
         }
     }//GEN-LAST:event_btnOKActionPerformed
 
-    private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-        // TODO add your handling code here:
-        dispose();
-    }//GEN-LAST:event_btnHuyActionPerformed
-    private void fillCbb() {
-        Vector array = cn.GetBanDangPhucVu();
-        if (array != null) {
-            DefaultComboBoxModel cbbmodel = new DefaultComboBoxModel(array);
-            cbBanDangPhucVu.setModel(cbbmodel);
-        } else {
-            JOptionPane.showMessageDialog(null, "Không có bàn đang phục vụ nào !");
-        }
-    }
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JpGopBan;
     private javax.swing.JButton btnHuy;
     private javax.swing.JButton btnOK;
-    private javax.swing.JComboBox<String> cbBanDangPhucVu;
+    private javax.swing.JComboBox<String> cbBanDangPv;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel lbGopban;
+    private javax.swing.JLabel lbChuyenban;
     // End of variables declaration//GEN-END:variables
 
+    private void fillCbb() {
+         //To change body of generated methods, choose Tools | Templates.
+              Vector array = cn.GetBanTrong();
+        if (array != null) {
+            DefaultComboBoxModel cbbmodel = new DefaultComboBoxModel(array);
+            cbBanDangPv.setModel(cbbmodel);
+        } else {
+            JOptionPane.showMessageDialog(null, "Không có bàn trống nào !");
+        }
+    }
 }

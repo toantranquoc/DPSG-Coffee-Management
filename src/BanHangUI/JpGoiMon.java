@@ -74,20 +74,20 @@ public class JpGoiMon extends javax.swing.JPanel {
         if (lbltrangthai.getText().equals("Trống")) {
             btnDatban.setText("Đặt chỗ");
             btnChuyenban.setVisible(false);
-            btnGopban.setVisible(false);
+            btnGopBan.setVisible(true);
             return;
 
         }
         if (lbltrangthai.getText().equals("Đã đặt trước")) {
             btnDatban.setText("Hủy đặt");
             btnChuyenban.setVisible(false);
-            btnGopban.setVisible(false);
+            btnGopBan.setVisible(false);
             return;
         }
         if (lbltrangthai.getText().equals("Đang phục vụ")) {
             btnDatban.setVisible(false);
             btnChuyenban.setVisible(true);
-            btnGopban.setVisible(true);
+            btnGopBan.setVisible(false);
             JpThucDon thucdon = new JpThucDon();
             thucdon.tenban = TenBan;
             thucdon.maban = maban;
@@ -95,6 +95,22 @@ public class JpGoiMon extends javax.swing.JPanel {
             jpthucdon.setLayout(new BorderLayout());
             jpthucdon.add(thucdon);
             jpthucdon.updateUI();
+        }
+        StringBuilder builder = new StringBuilder(lbltrangthai.getText());
+        String tt = builder.substring(0, 4);
+        if (tt.equals("Ghép")) {
+            btnDatban.setText("Hủy đặt");
+            btnChuyenban.setVisible(false);
+            btnGopBan.setVisible(false);
+            btnGoimon.setVisible(false);
+            return;
+        }
+        String me = builder.substring(0, 3);
+        if (me.equals("Gộp")) {
+            btnDatban.setText("Hủy đặt");
+            btnChuyenban.setVisible(false);
+            btnGopBan.setVisible(true);
+            btnGoimon.setVisible(true);
         }
     }
 
@@ -110,7 +126,7 @@ public class JpGoiMon extends javax.swing.JPanel {
             jpThongTinThanhToan.setVisible(true);
             jScrollPane1.setVisible(true);
             btnChuyenban.setVisible(true);
-            btnGopban.setVisible(true);
+            btnGopBan.setVisible(false);
             btnGoimon.setText("Thanh toán");
 
             JPanel[] pn = new JPanel[order.size()];
@@ -206,7 +222,7 @@ public class JpGoiMon extends javax.swing.JPanel {
         btnGoimon.setVisible(false);
         jpThongTinThanhToan.setVisible(false);
         btnChuyenban.setVisible(false);
-        btnGopban.setVisible(false);
+        btnGopBan.setVisible(true);
         btnhuy.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -257,7 +273,7 @@ public class JpGoiMon extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jpDsMon = new javax.swing.JPanel();
         btnChuyenban = new javax.swing.JButton();
-        btnGopban = new javax.swing.JButton();
+        btnGopBan = new javax.swing.JButton();
         jpthucdon = new javax.swing.JPanel();
 
         setPreferredSize(new java.awt.Dimension(724, 521));
@@ -418,14 +434,14 @@ public class JpGoiMon extends javax.swing.JPanel {
             }
         });
 
-        btnGopban.setFont(new java.awt.Font("Tahoma", 1, 9)); // NOI18N
-        btnGopban.setForeground(new java.awt.Color(102, 51, 0));
-        btnGopban.setText("Gộp bàn");
-        btnGopban.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnGopban.setPreferredSize(new java.awt.Dimension(100, 40));
-        btnGopban.addActionListener(new java.awt.event.ActionListener() {
+        btnGopBan.setFont(new java.awt.Font("Tahoma", 1, 9)); // NOI18N
+        btnGopBan.setForeground(new java.awt.Color(102, 51, 0));
+        btnGopBan.setText("Gộp bàn");
+        btnGopBan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGopBan.setPreferredSize(new java.awt.Dimension(100, 40));
+        btnGopBan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGopbanActionPerformed(evt);
+                btnGopBanActionPerformed(evt);
             }
         });
 
@@ -450,32 +466,31 @@ public class JpGoiMon extends javax.swing.JPanel {
                 .addComponent(jpThongTinThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jpThongTinBanLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jpThongTinBanLayout.createSequentialGroup()
                 .addGroup(jpThongTinBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpThongTinBanLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpThongTinBanLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jpThongTinBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jpThongTinBanLayout.createSequentialGroup()
-                                .addComponent(btnChuyenban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnGopban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jpThongTinBanLayout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addComponent(lblTenBan, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTenBan, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpThongTinBanLayout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(btnChuyenban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGopBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jpThongTinBanLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
         );
         jpThongTinBanLayout.setVerticalGroup(
             jpThongTinBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpThongTinBanLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(lblTenBan)
                 .addGap(26, 26, 26)
                 .addGroup(jpThongTinBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -495,9 +510,9 @@ public class JpGoiMon extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jpThongTinBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnChuyenban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGopban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7))
+                    .addComponent(btnGopBan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnChuyenban, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jpthucdonLayout = new javax.swing.GroupLayout(jpthucdon);
@@ -528,27 +543,64 @@ public class JpGoiMon extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDatbanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatbanActionPerformed
-        if (lbltrangthai.getText().equals("Đã đặt trước")) {
+        StringBuilder builder = new StringBuilder(lbltrangthai.getText());
+        String tt = builder.substring(0, 4);
+        String me = builder.substring(0, 3);
+        if (tt.equals("Ghép")) {
             lbltrangthai.setText("Trống");
             btnDatban.setText("Đặt chỗ");
             btnChuyenban.setVisible(false);
-            btnGopban.setVisible(false);
+            btnGopBan.setVisible(false);
             String TrangThai = "Trống";
             Ban b = new Ban(MaBan, TenBan, TrangThai);
             boolean Update = cn.UpdateBan(b);
+            goimon.removeAll();
+            goimon.updateUI();
             JpBanhang.banhang.fillBan();
             JpBanhang.banhang.updateUI();
         } else {
-            lbltrangthai.setText("Đã đặt trước");
-            btnDatban.setText("Hủy đặt");
-            String TrangThai = "Đã đặt trước";
-            Ban b = new Ban(MaBan, TenBan, TrangThai);
-            boolean Update = cn.UpdateBan(b);
-            JpBanhang.banhang.fillBan();
-            JpBanhang.banhang.updateUI();
-            //            Run.QlCafe.reloadPanel(1, MaBan);
+            if (me.equals("Gộp")) {
+                lbltrangthai.setText("Trống");
+                btnDatban.setText("Đặt chỗ");
+                btnChuyenban.setVisible(false);
+                btnGopBan.setVisible(false);
+                String TrangThai = "Trống";
+                Ban b = new Ban(MaBan, TenBan, TrangThai);
+                boolean Update = cn.UpdateBan(b);
+                if (cn.UpdateBanCon(String.valueOf(MaBan))) {
+                   System.out.println("Hủy bàn thành công!");
+                }
+                goimon.removeAll();
+                goimon.updateUI();
+                JpBanhang.banhang.fillBan();
+                JpBanhang.banhang.updateUI();
+            } else {
+                if (lbltrangthai.getText().equals("Đã đặt trước")) {
+                    lbltrangthai.setText("Trống");
+                    btnDatban.setText("Đặt chỗ");
+                    btnChuyenban.setVisible(false);
+                    btnGopBan.setVisible(false);
+                    String TrangThai = "Trống";
+                    Ban b = new Ban(MaBan, TenBan, TrangThai);
+                    boolean Update = cn.UpdateBan(b);
+                    //goimon.removeAll();
+                    goimon.updateUI();
+                    JpBanhang.banhang.fillBan();
+                    JpBanhang.banhang.updateUI();
+                } else {
+                    lbltrangthai.setText("Đã đặt trước");
+                    btnDatban.setText("Hủy đặt");
+                    String TrangThai = "Đã đặt trước";
+                    Ban b = new Ban(MaBan, TenBan, TrangThai);
+                    boolean Update = cn.UpdateBan(b);
+                    //goimon.removeAll();
+                    goimon.updateUI();
+                    JpBanhang.banhang.fillBan();
+                    JpBanhang.banhang.updateUI();
+                    //            Run.QlCafe.reloadPanel(1, MaBan);
+                }
+            }
         }
-
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDatbanActionPerformed
 
@@ -559,7 +611,7 @@ public class JpGoiMon extends javax.swing.JPanel {
             JpThucDon.thucdon.updateUI();
             jpThongTinThanhToan.setVisible(false);
             btnChuyenban.setVisible(false);
-            btnGopban.setVisible(false);
+            btnGopBan.setVisible(false);
             lblgioden.setText("......");
             lbltrangthai.setText("Trống");
             String TrangThai = "Trống";
@@ -577,7 +629,7 @@ public class JpGoiMon extends javax.swing.JPanel {
             DlThanhToan thanhtoan = new DlThanhToan(ManagerForm.main, true, tongtien, TenBan, MaBan, MaHD);//tongtien trang thai ban ten ban
             thanhtoan.setVisible(true);
             btnChuyenban.setVisible(true);
-            btnGopban.setVisible(true);
+            btnGopBan.setVisible(false);
             return;
         }
         if (btnGoimon.getText().equals("Gọi món")) {
@@ -589,7 +641,7 @@ public class JpGoiMon extends javax.swing.JPanel {
             lbltrangthai.setText("Đang phục vụ");
             btnDatban.setVisible(false);
             btnChuyenban.setVisible(true);
-            btnGopban.setVisible(true);
+            btnGopBan.setVisible(true);
             btnGoimon.setText("Hủy bàn");
 
             JpThucDon thucdon;
@@ -618,18 +670,18 @@ public class JpGoiMon extends javax.swing.JPanel {
         chuyenban.setVisible(true);
     }//GEN-LAST:event_btnChuyenbanActionPerformed
 
-    private void btnGopbanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGopbanActionPerformed
+    private void btnGopBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGopBanActionPerformed
         // TODO add your handling code here:
-        DlGopBan gopban = new DlGopBan(ManagerForm.main, true, MaBan, TenBan, MaHD);
+        DlGopBan gopban = new DlGopBan(ManagerForm.main, true, MaBan, MaHD, TenBan);
         gopban.setVisible(true);
-    }//GEN-LAST:event_btnGopbanActionPerformed
+    }//GEN-LAST:event_btnGopBanActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnChuyenban;
     private javax.swing.JButton btnDatban;
     private javax.swing.JButton btnGoimon;
-    private javax.swing.JButton btnGopban;
+    private javax.swing.JButton btnGopBan;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;
@@ -649,6 +701,5 @@ public class JpGoiMon extends javax.swing.JPanel {
     private javax.swing.JLabel lbltongtien;
     private javax.swing.JLabel lbltrangthai;
     // End of variables declaration//GEN-END:variables
-
 
 }

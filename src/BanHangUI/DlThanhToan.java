@@ -247,8 +247,12 @@ public class DlThanhToan extends javax.swing.JDialog {
             hd.SetTongTien(tong);
             hd.SetMaHD(MaHD);
             cn.ThanhToan(hd);
+            if(cn.UpdateBanCon(String.valueOf(MaBan))){
+                JOptionPane.showMessageDialog(null, "Thanh toán thành công");
+            }
 
             JpBanhang.banhang.fillBan();
+            JpBanhang.banhang.updateUI();
             JpGoiMon.goimon.removeAll();
             //jpBanHang.bh.fillLb();
 

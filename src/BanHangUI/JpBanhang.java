@@ -63,6 +63,18 @@ public class JpBanhang extends javax.swing.JPanel {
                 if (arrayBan.get(i).GetTrangThai().equals("Đã đặt trước")) {
                     arrayButtons[i].setBackground(Color.yellow);
                 }
+                StringBuilder builder = new StringBuilder(arrayBan.get(i).GetTrangThai());
+                String trangthaiban = builder.substring(0, 4);
+                if (trangthaiban.equals("Ghép")) {
+                    arrayButtons[i].setBackground(Color.green);
+                    arrayButtons[i].setEnabled(false);
+                    
+                }
+                 if (arrayBan.get(i).GetTrangThai().equals("Gộp bàn mẹ")) {
+                    arrayButtons[i].setBackground(Color.green);
+                    //arrayButtons[i].setEnabled(false);
+                }
+                
                 arrayButtons[i].setPreferredSize(new Dimension(90, 70));
 
                 arrayButtons[i].addMouseListener(new MouseAdapter() {
@@ -102,6 +114,10 @@ public class JpBanhang extends javax.swing.JPanel {
         btnDattruoc = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnTrong1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        btnTrong2 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
         jpChonmon = new javax.swing.JPanel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -117,6 +133,17 @@ public class JpBanhang extends javax.swing.JPanel {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Đã đặt trước");
+
+        btnTrong1.setBackground(Color.green);
+        btnTrong1.setForeground(Color.green);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setText("Bàn gộp mẹ");
+
+        btnTrong2.setForeground(Color.green);
+
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel7.setText("Bàn gộp con");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,12 +166,29 @@ public class JpBanhang extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(btnTrong1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addGap(84, 84, 84)
+                .addComponent(btnTrong2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jpBan, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btnTrong1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6))
+                    .addComponent(btnTrong2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnDattruoc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -189,9 +233,13 @@ public class JpBanhang extends javax.swing.JPanel {
     private javax.swing.JButton btnDangphucvu;
     private javax.swing.JButton btnDattruoc;
     private javax.swing.JButton btnTrong;
+    private javax.swing.JButton btnTrong1;
+    private javax.swing.JButton btnTrong2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jpBan;
     private javax.swing.JPanel jpChonmon;
